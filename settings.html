@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Settings</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+
+        <div class="home-icon" title="Go back">
+            <img src="icons/home.svg" alt="Home">
+        </div>
+
+        <div id="container">
+            <h1>Customisations</h1>
+            <h3>Study Duration</h3>
+            <input type="number" id="focusMinutes" min="1" max="90" /> minutes 
+            <button id="saveTimer">Save</button>
+
+            <h3>Blocked Sites</h3>
+            <textarea id="blockedSites" rows="5" placeholder="e.g. youtube.com"></textarea>
+            <button id="saveSites">Save Sites</button>
+        </div>
+        <script src="settings.js"></script>
+    </body>
+</html>

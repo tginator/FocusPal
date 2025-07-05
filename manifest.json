@@ -22,7 +22,7 @@
     ],
     "web_accessible_resources": [
         {
-            "resources": ["stayfocused.html"],
+            "resources": ["stayfocused.html","settings.html"],
             "matches": ["<all_urls>"]
         }
     ]

@@ -82,3 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     blockToggle.checked = data.blockEnabled || false;
   });
 });
+
+document.querySelector(".settings-icon").addEventListener("click", () => {
+  window.location.href = "settings.html";
+});
