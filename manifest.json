@@ -14,9 +14,16 @@
     },
     "permissions": [
         "storage",
-        "tabs"
+        "tabs",
+        "notifications"
     ],
     "host_permissions": [
         "*://*/*"
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["stayfocused.html"],
+            "matches": ["<all_urls>"]
+        }
     ]
 }   

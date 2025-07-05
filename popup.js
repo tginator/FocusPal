@@ -1,5 +1,3 @@
-let timer;
-let timeLeft = 1500;
 
 const timerDisplay = document.getElementById('timer');
 const startBtn = document.getElementById('startBtn');
@@ -32,39 +30,41 @@ function showRandomQuote() {
 
 
 // function for timer display on popup 
-function updateTimerDisplay() {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    
-    timerDisplay.textContent =
-        `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+function updateDisplay() {
+    chrome.runtime.sendMessage({ action: "getTime" }, (response) => {
+        const time = response?.timeLeft ?? 1500;
+        const minutes = Math.floor(time /60);
+        const seconds = time % 60;
+        timerDisplay.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+    });
 }
 
-// Start focus session
+let timerInterval = null;
+
+function startUpdatingDisplay() {
+    if (timerInterval) return;
+    timerInterval = setInterval(updateDisplay, 1000);
+}
+
+function stopUpdatingDisplay() {
+    clearInterval(timerInterval);
+    timerInterval = null;
+}
+
+// Start and stop buttons
 startBtn.addEventListener("click", () => {
-  if (timer) return;
-
-  timer = setInterval(() => {
-    timeLeft--;
-    updateTimerDisplay();
-
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-      timer = null;
-      alert("Focus session complete!");
-      timeLeft = 1500;
-      updateTimerDisplay();
-    }
-  }, 1000);
+    chrome.runtime.sendMessage({ action: "startTimer"});
+    startUpdatingDisplay();
 });
 
-// Stop/reset timer
 stopBtn.addEventListener("click", () => {
-  clearInterval(timer);
-  timer = null;
-  timeLeft = 1500;
-  updateTimerDisplay();
-});
+    chrome.runtime.sendMessage({ action: "stopTimer"});
+    stopUpdatingDisplay();
+    updateDisplay();
+    // Reset 
+})
+
+
 
 // Toggle block mode and save to Chrome storage
 blockToggle.addEventListener("change", () => {
@@ -73,7 +73,8 @@ blockToggle.addEventListener("change", () => {
 
 // On popup load
 document.addEventListener("DOMContentLoaded", () => {
-  updateTimerDisplay();
+  updateDisplay();
+  startUpdatingDisplay();
   showRandomQuote();
 
   // Load saved block state
