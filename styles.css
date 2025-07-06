@@ -101,3 +101,13 @@ button:hover {
   width: 100%;
   filter: brightness(0) invert(1); /* white icon if dark bg */
 }
+
+.break-mode {
+    background: linear-gradient(135deg, #56ccf2, #2f80ed);
+}
+
+#modeStatus {
+    font-size: 0.85em;
+    opacity: 0.9;
+    margin-top: 5px;
+}

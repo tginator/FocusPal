@@ -37,6 +37,19 @@ function updateDisplay() {
         const seconds = time % 60;
         timerDisplay.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
     });
+
+    chrome.runtime.sendMessage({ action: "getMode"}, (res) => {
+        const mode = res?.mode || "focus";
+        const status = document.getElementById("modeStatus");
+        status.textContent = mode === "focus" ? "Mode: Focus" : "Mode: Break";
+
+        const container = document.getElementById("container");
+        if(mode === "break") {
+            container.classList.add("break-mode");
+        } else {
+            container.classList.remove("break-mode");
+        }
+    });
 }
 
 let timerInterval = null;
