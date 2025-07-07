@@ -24,3 +24,9 @@ Focuspal is a lightweight productivity Chrome extension that aims to help users 
 4. Click **Load unpacked** and select the FocusPal directory.
 5. The FocusPal icon will appear in your toolbar.
 
+### To be added:
+- Sound notifications
+- Visual progress indicator
+- "Streak" to track daily usage
+- Stats and averages
+- Smoother transitions between focus and break modes
