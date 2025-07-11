@@ -1,113 +1,309 @@
+/* Base Styles */
 body {
   font-family: 'Segoe UI', sans-serif;
   width: 260px;
-  padding: 20px;
   margin: 0;
-background: linear-gradient(135deg, #a1ffce, #f8ffc4);
-color: #333;
-  text-align: center;
+  padding: 0;
+  color: #333;
+  background: linear-gradient(135deg, #a1ffce 0%, #f8ffc4 50%, #a1ffce 100%); /* Enhanced Focus gradient */
+  background-size: 200% 200%;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: focusGradient 8s ease-in-out infinite;
 }
 
+/* Focus Mode Animation */
+@keyframes focusGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Container */
 #container {
-    padding: 20px;
-    text-align: center;
+  background: transparent;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0.1); /* soft mask */
+  transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-h1 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-#quote {
-  font-style: italic;
-  font-size: 0.9em;
-  margin-bottom: 15px;
-  color: rgb(0, 82, 78);
-  
-}
-
+/* Timer */
 #timer {
   font-size: 2.5em;
   font-weight: bold;
-  margin: 10px 0 20px;
+  margin: 10px 0 5px;
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.button-group {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+#modeStatus {
+  font-size: 0.85em;
+  opacity: 0.9;
+  margin-bottom: 10px;
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+#streakDisplay {
+  font-size: 0.9em;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #e25822;
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Quote */
+#quote {
+  font-style: italic;
+  font-size: 0.9em;
+  color: #004;
+  margin-bottom: 15px;
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Buttons */
 button {
-  flex: 1;
   padding: 10px;
+  width: 100px;
+  margin: 5px;
   border: none;
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.95);
   color: #333;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 button:hover {
-  background: #ddd;
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Toggle */
 .toggle {
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-top: 15px;
-  gap: 8px;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 0.85em;
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#sessionCount {
-  margin-top: 20px;
-  font-size: 0.9em;
-  opacity: 0.85;
+.toggle input {
+  margin-right: 6px;
 }
 
-/* Settings icon and nav */
-
+/* Settings Icon */
 .settings-icon {
   position: absolute;
   top: 10px;
   right: 10px;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.settings-icon:hover {
+  transform: rotate(90deg);
 }
 
 .settings-icon img {
   width: 100%;
-  filter: brightness(0) invert(1); /* white icon on dark bg */
+  filter: brightness(0) invert(1);
+  transition: all 0.3s ease;
 }
 
-/* Home icon */
+/* Break Mode Transition */
+body.break-mode {
+  background: linear-gradient(135deg, #56ccf2 0%, #60a5ff 50%, #56ccf2 100%);
+  background-size: 200% 200%;
+  animation: breakGradient 6s ease-in-out infinite;
+  color: white;
+}
 
-.home-icon {
+/* Break Mode Animation */
+@keyframes breakGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Break Mode Specific Styles */
+body.break-mode #container {
+  box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0.05);
+}
+
+body.break-mode #timer {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+body.break-mode #modeStatus {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+body.break-mode #streakDisplay {
+  color: #ffd700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+body.break-mode #quote {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+body.break-mode button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+body.break-mode button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+body.break-mode .settings-icon img {
+  filter: brightness(0) invert(1);
+}
+
+/* Transition Overlay for Smooth Mode Changes */
+body::before {
+  content: '';
   position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: -1;
 }
 
-.home-icon img {
-  width: 100%;
-  filter: brightness(0) invert(1); /* white icon if dark bg */
+body.transitioning::before {
+  opacity: 1;
 }
 
-.break-mode {
-    background: linear-gradient(135deg, #56ccf2, #2f80ed);
+/* Mode Transition Animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-#modeStatus {
-    font-size: 0.85em;
-    opacity: 0.9;
-    margin-top: 5px;
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced hover effects for better interactivity */
+#timer:hover {
+  transform: scale(1.02);
+}
+
+#modeStatus:hover {
+  opacity: 1;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Remove transition from specific elements that shouldn't animate */
+button, .settings-icon {
+  transition: all 0.3s ease;
+}
+
+/* Focus mode specific enhancements */
+body:not(.break-mode) #timer {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body:not(.break-mode) button {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Break mode specific enhancements */
+body.break-mode #timer {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+body.break-mode button {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+body:not(.break-mode) {
+  background: linear-gradient(135deg, #a1ffce 0%, #f8ffc4 100%);
+  background-size: 200% 200%;
+  animation: focusGradient 8s ease-in-out infinite;
+}
+
+@keyframes focusGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+body.break-mode {
+  background: linear-gradient(135deg, #56ccf2 0%, #2f80ed 100%);
+  background-size: 200% 200%;
+  animation: breakGradient 6s ease-in-out infinite;
+  color: white;
+}
+
+@keyframes breakGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }

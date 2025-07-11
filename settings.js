@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   chrome.storage.local.set({ customMinutes: minutes }, () => {
-    // Reset the timer in background
-    chrome.runtime.sendMessage({ action: "stopTimer" }, () => {
+    // Update the timer in background with new settings
+    chrome.runtime.sendMessage({ action: "updateTimerSettings" }, () => {
       alert("Focus time updated to " + minutes + " minutes.");
     });
   });

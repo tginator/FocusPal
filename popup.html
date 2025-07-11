@@ -1,35 +1,138 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>FocusPal</title>
-        <link rel="stylesheet" href="styles.css" />
-    </head>
-    <body>
-        <div id="container">
-            <h1>FocusPal</h1>
-
-            <p id="quote">"Loading quote..."</p>
-
-            <div id="timer">25.00</div>
-
-            <p id="modeStatus">Mode: Focus</p>
-
-            <div class="button group">
-            <button id="startBtn">Start Focus</button>
-            <button id="stopBtn">Stop.</button>
-            </div>
-
-            <label class="toggle">
-                <input type="checkbox" id="blockToggle" />
-                Block distracting sites
-            </label>
-
-        </div>
-
-        <div class="settings-icon" title="Settings">
-            <img src="icons/settings.svg" alt="Settings" />
-        </div>
-
-        <script src="popup.js"></script>
-    </body>
+  <head>
+    <title>FocusPal</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+      body {
+        min-height: 100%;
+        min-width: 100%;
+        box-sizing: border-box;
+        background: none;
+        border-radius: 0;
+        box-shadow: none;
+        display: block;
+        padding: 0;
+        margin: 0;
+      }
+      #container {
+        width: 100%;
+        padding: 18px 10px 10px 10px;
+        box-sizing: border-box;
+        background: transparent;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0;
+      }
+      .settings-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 22px;
+        height: 22px;
+        cursor: pointer;
+        opacity: 0.9;
+        z-index: 2;
+      }
+      .settings-icon img {
+        width: 100%;
+        filter: brightness(0) invert(1) drop-shadow(0 0 2px #a5ff30);
+      }
+      h1 {
+        font-size: 1.4em;
+        margin-bottom: 8px;
+        color: #ffffff;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.50);
+      }
+      #quote {
+        margin-bottom: 14px;
+        font-size: 0.95em;
+        color: #333;
+        opacity: 0.8;
+      }
+      #timer {
+        margin-bottom: 0.5em;
+        font-size: 2.3em;
+        font-weight: bold;
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.50);
+      }
+      body.break-mode #timer {
+        color: #fff;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+      }
+      #modeStatus {
+        margin-bottom: 8px;
+        color: #888;
+      }
+      body.break-mode #modeStatus {
+        color: #e0eafc;
+      }
+      #streakDisplay {
+        margin-bottom: 16px;
+        color: #e25822;
+        font-weight: bold;
+      }
+      body.break-mode #streakDisplay {
+        color: #ffd700;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      }
+      .button-row {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+      button {
+        min-width: 80px;
+        font-size: 1em;
+      }
+      .toggle {
+        margin-top: 12px;
+        color: #333;
+      }
+      body.break-mode .toggle {
+        color: #fff;
+      }
+      @media (max-width: 400px) {
+        #container {
+          padding: 10px 2px 6px 2px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- settings icon -->
+    <div class="settings-icon" title="Settings">
+      <img src="icons/settings.svg" alt="Settings" />
+    </div>
+    <div id="container">
+      <h1>FocusPal</h1>
+      <p id="quote">"Your daily motivation..."</p>
+      <div id="timer">25:00</div>
+      <p id="modeStatus">Mode: Focus</p>
+      <p id="streakDisplay">Streak: 0 days</p>
+      <div class="button-row">
+        <button id="startBtn">Start</button>
+        <button id="stopBtn">Stop</button>
+      </div>
+      <div class="button-row">
+        <button id="resetTimerBtn">Reset Timer</button>
+      </div>
+      <div class="toggle">
+        <label>
+          <input type="checkbox" id="blockToggle" />
+          Block distracting sites
+        </label>
+      </div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
 </html>
