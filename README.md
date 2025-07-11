@@ -12,6 +12,8 @@ I built this application in order to develop my html/javascript/css skills while
 - Minimalist popup UI with gradient background and icons
 - Settings panel to adjust timer duration and site blocklist
 - Seamless transitions between work and break sessions
+- Streak system to track consistent days of studying
+- Notification pop up upon completion of focus mode or break mode
 
 ## Technologies Used
 - JavaScript
