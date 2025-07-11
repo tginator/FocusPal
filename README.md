@@ -1,6 +1,9 @@
 # FocusPal - Chrome Extension
 Focuspal is a lightweight productivity Chrome extension that aims to help users stay on task through study tracking, pomodoro timing and blocking distracting sites.
 
+## Purpose
+I built this application in order to develop my html/javascript/css skills while also attempting to create something that is beneficial to me. 
+
 ## Features
 - Customisable Pomodoro timer (default: 25 minutes)
 - Automatically blocks distracting websites during focus sessions
